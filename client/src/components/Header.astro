@@ -1,0 +1,14 @@
+---
+import { sanityClient } from 'sanity:client';
+
+const header = await sanityClient.fetch(`*[_type == 'settings']`);
+
+const {pageTitle, navLinks} = header[0];
+---
+
+<header class='p-4 flex justify-between items-center text-light uppercase trac'>
+  <a href='#'>{pageTitle}</a>
+  <nav>
+    {navLinks.map(link => <a href="#" class="ml-8 hover:opacity-70">{link}</a>)}
+  </nav>
+</header>
