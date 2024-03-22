@@ -1,0 +1,20 @@
+{
+  "name": "astro-sanity-concert-calendar",
+  "version": "1.0.0",
+  "description": "Simple concert calendar site built using Astro.js, TailwindCSS, and Sanity.io",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"cd cms && npm run dev\" \"cd client && npm run dev\"",
+    "client": "cd client && npm run dev",
+    "cms": "cd cms && npm run dev",
+    "build": "cd client && npm run build",
+    "preview": "cd client && npm run preview",
+    "cmsdeploy": "cd cms && npm run deploy"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
