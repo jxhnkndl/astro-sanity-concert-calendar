@@ -1,12 +1,13 @@
 ---
 import { sanityClient } from 'sanity:client';
+import { globalPaddingX } from '../utils/globals';
 
 const header = await sanityClient.fetch(`*[_type == 'settings']`);
 
 const { pageTitle, navLinks } = header[0];
 ---
 
-<header class='p-8 text-light uppercase'>
+<header class={`${globalPaddingX} py-4 text-light uppercase`}>
   <div class='max-w-[1240px] mx-auto flex justify-between items-center'>
     <a href='#'>{pageTitle}</a>
     <nav>
