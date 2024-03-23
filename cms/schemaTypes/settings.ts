@@ -15,6 +15,11 @@ export default defineType({
       title: 'Nav Links',
       type: 'array',
       of: [{type: 'string'}]
-    })
+    }),
+    defineField({
+      name: 'headline',
+      title: 'Page Headline',
+      type: 'string',
+    }),
   ]
 });

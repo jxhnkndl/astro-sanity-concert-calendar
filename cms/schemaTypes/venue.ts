@@ -6,8 +6,8 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'venue',
-      title: 'Venue',
+      name: 'venueName',
+      title: 'Venue Name',
       type: 'string',
       validation: (Rule) =>
         Rule.required().max(100).error('Please shorten venue name to less than 100 characters'),
