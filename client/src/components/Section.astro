@@ -1,0 +1,13 @@
+---
+export interface Props {
+  paddingX?: string;
+  paddingY?: string;
+}
+
+const { paddingX = '2rem', paddingY = '8rem' } = Astro.props as Props;
+---
+
+<!-- COMPLETE SECTION WRAPPER -->
+<section class={`${paddingX} ${paddingY}`}>
+  <slot />
+</section>

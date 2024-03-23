@@ -1,37 +1,13 @@
 ---
 export interface Props {
-  size?: string;
+  maxWidth?: string;
 }
 
-const { size = 'large' } = Astro.props as Props;
-
-const setContainerWidth = (size) => {
-  if (size === 'large') return 'large'
-  else if (size === 'medium') return 'medium'
-  else if (size === 'small') return 'small'
-  else return 'none';
-}
+const { maxWidth = '77.5rem' } = Astro.props as Props;
 ---
 
-<div class={`outer-container ${setContainerWidth(size)}`}>
-  <div class='inner-container'>
-    <slot />
-  </div>
+<!-- INTERNAL MAX WIDTH CONTAINER -->
+
+<div class={`max-w-[${maxWidth}] mx-auto`}>
+  <slot />
 </div>
-
-<!-- STYLING -->
-
-<style>
-  .outer-container {
-    width: 100%;
-    margin: 0 auto;
-  }
-
-  .large {
-    max-width: 1240px;
-  }
-
-  .inner-container {
-    padding: 0 var(--global-x-padding);
-  }
-</style>
