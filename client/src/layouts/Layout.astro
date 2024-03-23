@@ -13,8 +13,19 @@ import Header from '../components/Header.astro';
     <meta name='generator' content={Astro.generator} />
     <title>Upcoming Events</title>
   </head>
-  <body class="theme-dark font-primary font-regular">
+  <body>
     <Header />
     <slot />
   </body>
 </html>
+
+<!-- STYLING -->
+
+<style>
+  body {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    font-family: var(--font-primary);
+    font-weight: 400;
+  }
+</style>
