@@ -1,6 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sanity from '@sanity/astro';
 import react from '@astrojs/react';
+import netlify from '@astrojs/netlify';
 
 import tailwind from '@astrojs/tailwind';
 
@@ -16,4 +17,6 @@ export default defineConfig({
     }),
     tailwind(),
   ],
+  output: 'server',
+  adapter: netlify()
 });
