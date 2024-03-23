@@ -1,23 +1,53 @@
 ---
 import { sanityClient } from 'sanity:client';
-import { globalPaddingX } from '../utils/globals';
+import Container from '../components/Container.astro';
 
+// fetch all page setting content
 const header = await sanityClient.fetch(`*[_type == 'settings']`);
-
 const { pageTitle, navLinks } = header[0];
+
+// create slugs for each link
+const links = navLinks.map((link) => {
+  return {
+    link: link,
+    slug: link.toLowerCase(),
+  };
+});
 ---
 
-<header class={`${globalPaddingX} py-4 text-light uppercase`}>
-  <div class='max-w-[1240px] mx-auto flex justify-between items-center'>
-    <a href='#'>{pageTitle}</a>
-    <nav>
-      {
-        navLinks.map((link) => (
-          <a href='#' class='ml-8'>
-            {link}
-          </a>
-        ))
-      }
-    </nav>
-  </div>
+<header>
+  <Container>
+    <div class='inner-container'>
+      <!-- insert page title from cms settings -->
+      <a class='brand' href='#'>{pageTitle}</a>
+      <nav>
+        <!-- create navigation links from cms settings -->
+        {links.map((link) => <a href={`/${link.slug}`}>{link.link}</a>)}
+      </nav>
+    </div>
+  </Container>
 </header>
+
+<style>
+  .inner-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+  }
+
+  .inner-container a {
+    color: var(--color-light);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.25px;
+  }
+
+  .inner-container .brand {
+    font-weight: 500;
+  }
+
+  nav a {
+    margin-left: 2rem;
+  }
+</style>

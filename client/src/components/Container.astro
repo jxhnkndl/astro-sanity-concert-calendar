@@ -13,17 +13,25 @@ const setContainerWidth = (size) => {
 }
 ---
 
-<div class={`container ${setContainerWidth(size)}`}>
-  <slot />
+<div class={`outer-container ${setContainerWidth(size)}`}>
+  <div class='inner-container'>
+    <slot />
+  </div>
 </div>
 
+<!-- STYLING -->
+
 <style>
-  .container {
+  .outer-container {
     width: 100%;
     margin: 0 auto;
   }
 
   .large {
     max-width: 1240px;
+  }
+
+  .inner-container {
+    padding: 0 var(--global-x-padding);
   }
 </style>
