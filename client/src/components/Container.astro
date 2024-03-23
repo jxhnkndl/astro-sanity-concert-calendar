@@ -1,0 +1,29 @@
+---
+export interface Props {
+  size?: string;
+}
+
+const { size = 'large' } = Astro.props as Props;
+
+const setContainerWidth = (size) => {
+  if (size === 'large') return 'large'
+  else if (size === 'medium') return 'medium'
+  else if (size === 'small') return 'small'
+  else return 'none';
+}
+---
+
+<div class={`container ${setContainerWidth(size)}`}>
+  <slot />
+</div>
+
+<style>
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .large {
+    max-width: 1240px;
+  }
+</style>
