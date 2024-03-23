@@ -1,5 +1,4 @@
 ---
-import '../styles/globals.css';
 import Header from '../components/Header.astro';
 ---
 
@@ -11,21 +10,16 @@ import Header from '../components/Header.astro';
     <meta name='viewport' content='width=device-width' />
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='generator' content={Astro.generator} />
-    <title>Upcoming Events</title>
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link
+      href='https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&family=Righteous&display=swap'
+      rel='stylesheet'
+    />
+    <title>Astro Sanity Events</title>
   </head>
-  <body>
+  <body class="bg-dark text-light font-primary">
     <Header />
     <slot />
   </body>
 </html>
-
-<!-- STYLING -->
-
-<style>
-  body {
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    font-family: var(--font-primary);
-    font-weight: 400;
-  }
-</style>
