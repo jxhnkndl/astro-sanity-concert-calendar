@@ -1,6 +1,6 @@
 ---
 import { sanityClient } from 'sanity:client';
-import Container from '../components/Container.astro';
+import Container from './Container.astro';
 
 // fetch all page setting content
 const header = await sanityClient.fetch(`*[_type == 'settings']`);
@@ -13,41 +13,28 @@ const links = navLinks.map((link) => {
     slug: link.toLowerCase(),
   };
 });
+
+// establish page padding props
+export interface Props {
+  paddingX?: string;
+}
+
+const { paddingX = '1.5rem' } = Astro.props as Props;
 ---
 
-<header>
+<header class={`${paddingX} py-4 no-underline uppercase`}>
   <Container>
-    <div class='inner-container'>
-      <!-- insert page title from cms settings -->
-      <a class='brand' href='#'>{pageTitle}</a>
+    <div class='flex justify-between items-center'>
+      <a href='#'>{pageTitle}</a>
       <nav>
-        <!-- create navigation links from cms settings -->
-        {links.map((link) => <a href={`/${link.slug}`}>{link.link}</a>)}
+        {
+          links.map((link) => (
+            <a href={`/${link.slug}`} class='ml-8'>
+              {link.link}
+            </a>
+          ))
+        }
       </nav>
     </div>
   </Container>
 </header>
-
-<style>
-  .inner-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 0;
-  }
-
-  .inner-container a {
-    color: var(--color-light);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 0.25px;
-  }
-
-  .inner-container .brand {
-    font-weight: 500;
-  }
-
-  nav a {
-    margin-left: 2rem;
-  }
-</style>

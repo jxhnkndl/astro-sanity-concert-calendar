@@ -1,1 +1,0 @@
-export const globalPaddingX = 'px-8';
