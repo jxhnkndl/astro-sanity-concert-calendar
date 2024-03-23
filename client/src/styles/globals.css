@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600&family=Righteous&display=swap');
+
+:root {
+  /* COLORS */
+  --color-dark: #222325; 
+  --color-light: #F2F2F2;
+
+  /* FONTS */
+  --font-primary: 'Poppins', sans-serif;
+  --font-accent: 'Righteous', sans-serif; 
+  
+  /* CONTAINERS */
+  --container-lg: 1240px;
+
+  /* SPACING */
+  --global-x-padding: 2rem;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* COLOR UTILITIES */
+
+.theme-dark {
+  background-color: var(--color-dark);
+  color: var(--color-light);
+}
+
+.theme-light {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+/* TYPOGRAPHY */
+
+.font-primary {
+  font-family: var(--font-primary);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.font-light {
+  font-weight: 200;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.font-bold {
+  font-weight: 600;
+}
+
+/* CONTAINERS */
+
+.container-lg {
+  width: 100%;
+  max-width: var(--container-lg);
+}
+
+/* SPACING */
+.global-x-padding {
+  padding: 0 var(--global-x-padding);
+}
