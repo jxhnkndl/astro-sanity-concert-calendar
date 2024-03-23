@@ -20,7 +20,7 @@ export interface Props {
 }
 
 // ADJUST THIS VALUE IF GLOBAL X PADDING CHANGES IN THE SECTION COMPONENT
-const { paddingX = '1.5rem' } = Astro.props as Props;
+const { paddingX = 'px-8' } = Astro.props as Props;
 ---
 
 <header class={`${paddingX} py-4 no-underline uppercase`}>

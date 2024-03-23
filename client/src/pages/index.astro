@@ -2,16 +2,30 @@
 import { sanityClient } from 'sanity:client';
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
 import Container from '../components/Container.astro';
+import Concert from '../components/Concert.astro';
+
+const pageSettings = await sanityClient.fetch(`*[_type == 'settings']`);
+
+const { headline } = pageSettings[0];
 
 const concerts = await sanityClient.fetch(`
   *[_type == 'concert'] {
     date,
-    venue,
     doors,
     showtime,
+    venue -> {
+      venueName,
+      address,
+      city,
+      state,
+      zip,
+      capacity
+    },
     headliner -> {
-      name
+      name,
+      "imageUrl": image.asset->url
     },
     "artists": artists[] -> name,
     "images": artists[] -> image.asset->url
@@ -24,5 +38,15 @@ console.log(concerts);
 <Layout>
   <Hero />
   <main>
+    <Section>
+      <Container>
+        <h1 class="mb-8 text-4xl uppercase font-medium">{headline}</h1>
+        <ul class="grid grid-cols-3 gap-8">
+          {concerts.map((concert) => (
+            <Concert concert={concert} />
+          ))}
+        </ul>
+      </Container>
+    </Section>
   </main>
 </Layout>

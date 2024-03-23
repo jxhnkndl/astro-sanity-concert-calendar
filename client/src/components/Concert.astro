@@ -1,0 +1,66 @@
+---
+import dayjs from 'dayjs';
+
+export interface Props {
+  concert: {
+    date: Date;
+    doors: string;
+    showtime: string;
+    venue: {
+      venueName: string;
+      address: string;
+      city: string;
+      state: string;
+      zip: number;
+      capacity: number;
+    };
+    headliner: {
+      name: string;
+      imageUrl: string;
+    };
+    artists: string[];
+    images: string[];
+  };
+}
+
+const { concert } = Astro.props as Props;
+
+const { date, doors, showtime, venue, headliner, artists, images } = concert;
+const { name: headlinerName, imageUrl } = headliner;
+const { venueName, address, city, state, zip, capacity } = venue;
+
+const formattedDate = dayjs().format('dddd MMM D, YYYY');
+
+const formatArtists = (artistsArr) => {
+  let output = '';
+  
+  if (!artistsArr.length) {
+    return '';
+  }
+
+  artistsArr.forEach((artist, index) => {
+    if (index === artistsArr.length - 1) {
+      output += artist;
+    } else {
+      output += artist + ', ';
+    }
+  });
+
+  return output;
+}
+
+const supportArtists = formatArtists(artists);
+---
+
+<li class='bg-light/10 flex flex-col rounded-lg'>
+  <img src={imageUrl} class='rounded-t-lg' />
+  <div class='p-4'>
+    <h2 class='mb-3 text-xl font-medium'>{formattedDate}</h2>
+    <h3 class="mb-1 text-2xl">{headlinerName}</h3>
+    <p class="mb-3">w/ {supportArtists}</p>
+    <h4 class="text-lg">{venueName}</h4>
+    <p class="mb-3">{city}, {state}</p>
+    <p>Doors at {doors}</p>
+    <p>Show at {showtime}</p>
+  </div>
+</li>
